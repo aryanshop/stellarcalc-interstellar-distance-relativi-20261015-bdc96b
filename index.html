@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StellarCalc: Interstellar Distance & Relativistic Voyage Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="space-background" aria-hidden="true">
+    <div class="stars"></div>
+    <div class="nebula"></div>
+  </div>
+
+  <header class="site-header">
+    <div class="logo-area">
+      <span class="logo-icon" aria-hidden="true">✦</span>
+      <h1>Stellar<span>Calc</span></h1>
+    </div>
+    <p class="tagline">Interstellar Voyage & Relativistic Time Dilation Simulator</p>
+  </header>
+
+  <main class="main-container">
+    <section class="control-panel" aria-labelledby="config-heading">
+      <h2 id="config-heading" class="section-title">Mission Parameters</h2>
+      
+      <div class="input-group">
+        <label for="destination-select">Destination Star System</label>
+        <select id="destination-select">
+          <option value="proxima">Proxima Centauri b (4.24 ly)</option>
+          <option value="barnard">Barnard's Star (5.96 ly)</option>
+          <option value="sirius">Sirius A/B (8.60 ly)</option>
+          <option value="tau-ceti">Tau Ceti e (11.90 ly)</option>
+          <option value="kepler-186f">Kepler-186f (582.0 ly)</option>
+          <option value="custom">Custom Distance...</option>
+        </select>
+      </div>
+
+      <div class="input-group" id="custom-distance-group" style="display: none;">
+        <label for="custom-ly">Custom Distance (Light Years)</label>
+        <input type="number" id="custom-ly" value="10.0" min="0.1" max="100000" step="0.1">
+      </div>
+
+      <div class="input-group">
+        <div class="label-with-value">
+          <label for="speed-range">Cruise Velocity (% of Speed of Light)</label>
+          <span id="speed-val">50%</span>
+        </div>
+        <input type="range" id="speed-range" min="1" max="99.999" step="0.001" value="50">
+      </div>
+
+      <div class="input-group">
+        <label for="propulsion-select">Drive Technology</label>
+        <select id="propulsion-select">
+          <option value="fusion">Advanced Fusion (Isp = 1,000,000 s)</option>
+          <option value="antimatter">Antimatter Catalyzed (Isp = 10,000,000 s)</option>
+          <option value="photon">Photonic / Laser Sail (Reactionless)</option>
+          <option value="chemical" selected>Chemical / Ion Hybrid (Isp = 4,500 s)</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="ship-mass">Dry Ship Mass (Metric Tons)</label>
+        <input type="number" id="ship-mass" value="500" min="1" max="100000" step="10">
+      </div>
+
+      <div class="input-group checkbox-group">
+        <input type="checkbox" id="acceleration-toggle" checked>
+        <label for="acceleration-toggle">Account for Isopachic Acceleration/Deceleration Phases (1g flip-and-burn)</label>
+      </div>
+
+      <button id="calculate-btn" class="primary-btn">Initialize Mission Simulation</button>
+    </section>
+
+    <section class="results-dashboard" aria-labelledby="results-heading">
+      <h2 id="results-heading" class="visually-hidden">Mission Telemetry Results</h2>
+      
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-label">Earth Elapsed Time</span>
+          <span class="metric-value" id="res-earth-time">--</span>
+          <span class="metric-sub" id="res-earth-sub">Years in Earth reference frame</span>
+        </div>
+
+        <div class="metric-card highlight">
+          <span class="metric-label">Crew Proper Time</span>
+          <span class="metric-value" id="res-crew-time">--</span>
+          <span class="metric-sub" id="res-crew-sub">Experienced by onboard crew</span>
+        </div>
+
+        <div class="metric-card">
+          <span class="metric-label">Lorentz Factor (γ)</span>
+          <span class="metric-value" id="res-lorentz">--</span>
+          <span class="metric-sub">Time dilation scale</span>
+        </div>
+
+        <div class="metric-card">
+          <span class="metric-label">Required Propellant</span>
+          <span class="metric-value" id="res-fuel">--</span>
+          <span class="metric-sub" id="res-fuel-sub">Metric tons of reaction mass</span>
+        </div>
+      </div>
+
+      <div class="visualization-card">
+        <h3>Relativistic Trajectory & Twin Paradox Profile</h3>
+        <div class="canvas-wrapper">
+          <canvas id="trajectory-canvas" width="700" height="300" aria-label="Graphical representation of flight timeline and time dilation"></canvas>
+        </div>
+        <div class="canvas-legend">
+          <span class="legend-item"><i class="legend-color earth-color"></i> Earth Time Progression</span>
+          <span class="legend-item"><i class="legend-color crew-color"></i> Ship Proper Time</span>
+        </div>
+      </div>
+
+      <div class="insight-box" id="physics-insight">
+        <h3>Physics Log & Analysis</h3>
+        <p id="insight-text">Configure your mission parameters above and click "Initialize Mission Simulation" to calculate relativistic dynamics.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>StellarCalc • Built with vanilla HTML5, CSS3, and JavaScript • Relativistic Space Navigation Instrument</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
